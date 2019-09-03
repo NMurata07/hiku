@@ -1,0 +1,7 @@
+<% if @topic_us.present? %>
+<% @topic_us.each do |topic_u| %>
+  <%= topic_u.text %>
+  <%= topic_u.user.name %>
+  <%= link_to '下の句投稿', new_topic_d_path %>
+<% end %>
+<% end %>
