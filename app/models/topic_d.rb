@@ -3,5 +3,4 @@ class TopicD < ApplicationRecord
   
   belongs_to :user
   belongs_to :topic_u
-  has_many :favorites
 end

@@ -1,2 +1,5 @@
-<h1>TopicDs#new</h1>
-<p>Find me in app/views/topic_ds/new.html.erb</p>
+<%= form_for [@topic_u, @topic_d] do |f| %>
+  <%= f.label "下の句" %>
+  <%= f.text_field :text %>
+  <%= f.submit "投稿" %>
+<% end %>

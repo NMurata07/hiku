@@ -1,0 +1,16 @@
+<%= current_user.name %>
+<% @topics.each do |topic| %>
+  <% if topic.instance_of?(TopicD) %>
+    <% if topic.topic_u.present? %>
+      <p><%= topic.topic_u.text %></p>
+    <% else %>
+      <p>この投稿は表示できません</p>
+    <% end %>
+  <% end %>
+  <p><%= link_to topic.text, topic_u_path(id: topic.id) %>
+  <%= topic.created_at %></p>
+  <% if topic.instance_of?(TopicU) %>
+    <%= link_to '下の句投稿', new_topic_u_topic_d_path(topic_u_id: topic.id) %>
+    <%= topic.topic_ds.count %>
+  <% end %>
+<% end %>

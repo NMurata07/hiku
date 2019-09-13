@@ -3,5 +3,8 @@ class TopicU < ApplicationRecord
   
   belongs_to :user
   has_many :topic_ds
-  has_many :favorites
+  
+  def self.favorite_us(topic_id)
+    Favorite.find_by(topic_id: topic_id, topic_type: "above")
+  end
 end

@@ -14,8 +14,8 @@ ActiveRecord::Schema.define(version: 2019_08_30_030421) do
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "topic_u_id"
-    t.integer "topic_d_id"
+    t.integer "topic_id"
+    t.string "topic_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

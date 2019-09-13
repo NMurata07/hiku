@@ -1,7 +1,14 @@
-<% if @topic_us.present? %>
-<% @topic_us.each do |topic_u| %>
-  <%= topic_u.text %>
-  <%= topic_u.user.name %>
-  <%= link_to '下の句投稿', new_topic_d_path %>
-<% end %>
-<% end %>
+  <% @topic_us.each do |topic_u| %>
+    <p>
+    <%= link_to topic_u.text, topic_u_path(id: topic_u.id) %>
+    <%= topic_u.user.name %>
+    <%= topic_u.created_at %>
+    <%= topic_u.topic_ds.count %>
+    <% favorite_us = TopicU.favorite_us(topic_u.id) %>
+    <% if favorite_us.user.include?(current_user) %>
+      <%= link_to '❤', favorite_destroy_path(topic_id: topic_u_id, topic_type: "above") %>
+    <% else %>
+      <%= link_to '♡', favorites_create_path(topic_id: topic_u.id, topic_type: "above") %>
+    <% end %>
+    </p>
+  <% end %>

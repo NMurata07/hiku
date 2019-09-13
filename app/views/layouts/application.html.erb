@@ -10,15 +10,28 @@
   </head>
 
   <body>
-    <%= link_to 'Hi! ku', root_path %>
-    
-    <% if !user_signed_in? %>
-      <%= link_to 'Log in', new_user_session_path %>
-      <%= link_to 'Sign in', new_user_registration_path %>
-    <% else %>
-      <%= link_to '投稿', new_topic_u_path %>
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+    <% flash.each do |key, value| %>
+      <div class = "alert alert-<%= key %>" role = "alert"><%= value %></div>
     <% end %>
+    
+      <div class = "container">
+        <div class = "nav-left">
+        <h1 class = "logo">
+        <%= link_to 'Hi! ku', root_path %>
+        </h1>
+        </div>
+        <div class = "nav-right">
+        <% if !user_signed_in? %>
+          <%= link_to 'Log in', new_user_session_path %>
+          <%= link_to 'Sign in', new_user_registration_path %>
+        <% else %>
+          <%= link_to '投稿', new_topic_u_path %>
+          <%= link_to 'user page', users_show_path %>
+          <%= link_to 'favorite', favorites_index_path %>
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
+        <% end %>
+        </div>
+    </nav>
     
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
@@ -26,5 +39,11 @@
 
     
     <%= yield %>
+    
+    <script>
+      $(function(){
+        $(".alert").fadeOut(5000);
+      });
+    </script>
   </body>
 </html>

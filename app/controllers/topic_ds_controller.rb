@@ -12,7 +12,7 @@ class TopicDsController < ApplicationController
     @topic_d = current_user.topic_ds.new(topic_d_params)
     @topic_d.topic_u_id = params[:topic_u_id]
     if @topic_d.save
-      redirect_back(fallback_location: root_path)
+      redirect_to topic_u_path(id: params[:topic_u_id])
     else
       render :new
     end

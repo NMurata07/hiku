@@ -1,1 +1,12 @@
 <%= @topic_u.text %>
+<%= @topic_u.created_at %>
+<% @topic_u.topic_ds.each do |topic_d| %>
+  <p>
+  <%= topic_d.text %>
+  <%= topic_d.created_at %>
+  </p>
+<% end %>
+<% if user_signed_in? %>
+<%= link_to '削除', topic_u_path(id: @topic_u.id), method: :delete %>
+<%= link_to '下の句投稿', new_topic_u_topic_d_path(topic_u_id: @topic_u.id) %>
+<% end %>
