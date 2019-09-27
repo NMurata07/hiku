@@ -1,2 +1,22 @@
-<h1>TopicDs#show</h1>
-<p>Find me in app/views/topic_ds/show.html.erb</p>
+<div class="top-hero-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card container">
+          <div class="card-body">
+            <h5 class="card-title"><%= @topic_u.text %></h5>
+            <p class="card-text"><%= @topic_u.created_at %></p>
+            <% @topic_u.topic_ds.each do |topic_d| %>
+              <h6 class="card-subtitle mb-2 text-muted"><%= link_to topic_d.text, topic_u_topic_d_path(id: topic_d.id) %></h6>
+              <p class="card-text"><%= topic_d.created_at %></p>
+            <% end %>
+            <% if user_signed_in? %>
+              <a class="card-link"><%= link_to '削除', topic_u_path(id: @topic_u.id), method: :delete %></a>
+              <a class="card-link"><%= link_to '下の句投稿', new_topic_u_topic_d_path(topic_u_id: @topic_u.id) %></a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,24 @@
-  <% @topic_us.each do |topic_u| %>
-    <p>
-    <%= link_to topic_u.text, topic_u_path(id: topic_u.id) %>
-    <%= topic_u.user.name %>
-    <%= topic_u.created_at %>
-    <%= topic_u.topic_ds.count %>
-    <% favorite_us = TopicU.favorite_us(topic_u.id) %>
-    <% if favorite_us.user.include?(current_user) %>
-      <%= link_to '❤', favorite_destroy_path(topic_id: topic_u_id, topic_type: "above") %>
-    <% else %>
-      <%= link_to '♡', favorites_create_path(topic_id: topic_u.id, topic_type: "above") %>
+<div class="top-hero-wrapper">
+  <div class="container">
+    <% @topic_us.each do |topic_u| %>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card container">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to topic_u.text, topic_u_path(id: topic_u.id) %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= topic_u.user.name %></h6>
+            <p class="card-text"><%= topic_u.created_at %></p>
+            <% if user_signed_in? %>
+              <% if topic_u.favorite_us_ids.include?(current_user.id) %>
+                <a class="card-link"><%= link_to '︎♥', favorites_destroy_path(topic_id: topic_u.id, topic_type: "above") %></a>
+              <% else %>
+                <a class="card-link"><%= link_to '♡', favorites_create_path(topic_id: topic_u.id, topic_type: "above") %></a>
+              <% end %>
+            <% end %>
+          </div>
+         </div>
+        </div>
+      </div>
     <% end %>
-    </p>
-  <% end %>
+  </div>
+</div>

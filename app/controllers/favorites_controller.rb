@@ -2,8 +2,9 @@ class FavoritesController < ApplicationController
   def index
     @favorite_topics = []
     current_user.favorites.each do |favorite|
-      @favorite_topics << User.favorite(favorite.topic_id, current_user.id, favorite.topic_type)
+      @favorite_topics << favorite.topic
     end
+    @favorite_topics.reverse!
   end
 
   def create

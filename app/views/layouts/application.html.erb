@@ -10,17 +10,15 @@
   </head>
 
   <body>
-    <% flash.each do |key, value| %>
-      <div class = "alert alert-<%= key %>" role = "alert"><%= value %></div>
-    <% end %>
     
+    <nav class="navbar navbar-expand-md navbar-fixed-top navbar-transparent">
       <div class = "container">
-        <div class = "nav-left">
+        <div class = "navbar-left">
         <h1 class = "logo">
         <%= link_to 'Hi! ku', root_path %>
         </h1>
         </div>
-        <div class = "nav-right">
+        <div class = "navbar-right">
         <% if !user_signed_in? %>
           <%= link_to 'Log in', new_user_session_path %>
           <%= link_to 'Sign in', new_user_registration_path %>
@@ -33,10 +31,9 @@
         </div>
     </nav>
     
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    
-
+    <% flash.each do |key, value| %>
+      <div class = "alert alert-<%= key %>" role = "alert"><%= value %></div>
+    <% end %>
     
     <%= yield %>
     

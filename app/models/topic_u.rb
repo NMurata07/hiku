@@ -4,7 +4,7 @@ class TopicU < ApplicationRecord
   belongs_to :user
   has_many :topic_ds
   
-  def self.favorite_us(topic_id)
-    Favorite.find_by(topic_id: topic_id, topic_type: "above")
+  def favorite_us_ids
+    Favorite.where(topic_id: self.id, topic_type: "above").pluck(:user_id)
   end
 end

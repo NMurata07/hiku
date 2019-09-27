@@ -1,16 +1,30 @@
-<%= current_user.name %>
-<% @topics.each do |topic| %>
-  <% if topic.instance_of?(TopicD) %>
-    <% if topic.topic_u.present? %>
-      <p><%= topic.topic_u.text %></p>
-    <% else %>
-      <p>この投稿は表示できません</p>
+<div class="top-hero-wrapper">
+  <div class="container">
+    <% @topics.each do |topic| %>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <div class="card container">
+          <div class="card-body">
+            <P><%= current_user.name %></p>
+            <% if topic.instance_of?(TopicD) %>
+              <% if topic.topic_u.present? %>
+                <p><%= topic.topic_u.text %></p>
+              <% else %>
+                <p>この投稿は表示できません</p>
+              <% end %>
+            <% end %>
+            <h5 class="card-title"><%= link_to topic.text, topic_u_path(id: topic.id) %></h5>
+            <p><%= topic.created_at %></p>
+            <% if topic.instance_of?(TopicU) %>
+              <%= link_to '下の句投稿', new_topic_u_topic_d_path(topic_u_id: topic.id) %>
+              <%= topic.topic_ds.count %>
+            <% else %>
+              <a class="card-link"><%= link_to '削除', topic_u_topic_d_path(id: topic.id), method: :delete %></a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
     <% end %>
-  <% end %>
-  <p><%= link_to topic.text, topic_u_path(id: topic.id) %>
-  <%= topic.created_at %></p>
-  <% if topic.instance_of?(TopicU) %>
-    <%= link_to '下の句投稿', new_topic_u_topic_d_path(topic_u_id: topic.id) %>
-    <%= topic.topic_ds.count %>
-  <% end %>
-<% end %>
+  </div>
+</div>

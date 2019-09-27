@@ -21,6 +21,15 @@ class TopicDsController < ApplicationController
   def show
   end
   
+  def destroy
+    @topic_d = TopicD.find(params[:id])
+    if @topic_d.delete
+      redirect_to root_path
+    else
+      redirect_to topic_d_path
+    end
+  end
+
   private
   def topic_d_params
     params.require(:topic_d).permit(:text)
