@@ -19,6 +19,7 @@ class TopicDsController < ApplicationController
   end
 
   def show
+    @topic_u = TopicU.find(params[:topic_u_id])
   end
   
   def destroy

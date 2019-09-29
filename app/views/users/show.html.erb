@@ -19,7 +19,7 @@
               <%= link_to '下の句投稿', new_topic_u_topic_d_path(topic_u_id: topic.id) %>
               <%= topic.topic_ds.count %>
             <% else %>
-              <a class="card-link"><%= link_to '削除', topic_u_topic_d_path(id: topic.id), method: :delete %></a>
+              <a class="card-link"><%= link_to '削除', topic_u_topic_d_path(topic_u_id: topic.topic_u.id, id: topic.id), method: :delete %></a>
             <% end %>
           </div>
         </div>

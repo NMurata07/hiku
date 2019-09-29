@@ -7,7 +7,7 @@
             <h5 class="card-title"><%= @topic_u.text %></h5>
             <p class="card-text"><%= @topic_u.created_at %></p>
             <% @topic_u.topic_ds.each do |topic_d| %>
-              <h6 class="card-subtitle mb-2 text-muted"><%= link_to topic_d.text, topic_u_topic_d_path(id: topic_d.id) %></h6>
+              <h6 class="card-subtitle mb-2 text-muted"><%= link_to topic_d.text, topic_u_topic_d_path(topic_u_id: @topic_u.id, id: topic_d.id) %></h6>
               <p class="card-text"><%= topic_d.created_at %></p>
             <% end %>
             <% if user_signed_in? %>
